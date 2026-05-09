@@ -23,10 +23,22 @@ let snake = [
   { x: 0, y: 0 },
 ];
 
+window.addEventListener("keydown", startGame);
 window.addEventListener("keydown", changeDirection);
 resetBtn.addEventListener("click", resetGame);
 
-gameStart();
+clearBoard();
+createFood();
+drawFood();
+drawSnake();
+
+function startGame(event) {
+  if (event.code === "Space" && !running) {
+    gameStart();
+  }
+}
+
+// gameStart();
 
 function gameStart() {
   running = true;
