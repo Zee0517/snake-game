@@ -2,20 +2,24 @@ body {
   margin: 0;
   height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle at center, #3a2614, #120b05);
+  background: #2b1d0e;
   font-family: "VT323", monospace;
 }
 
 #gameContainer {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* THE BOX LOOK */
 #gameBoard {
-  border: 3px solid;
-  color: black;
+  background: #7a6f52;
+  border: 6px solid #3b2a16;
+  box-shadow: 10px 10px 0 #000;
+  image-rendering: pixelated;
 }
 
 #scoreText {
