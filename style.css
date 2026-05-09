@@ -1,14 +1,13 @@
-/* body {
+body {
   margin: 0;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #2b1d0e;
-  color: #f4d29c;
+  background: radial-gradient(circle at center, #3a2614, #120b05);
   font-family: "VT323", monospace;
-} */
+}
 
 #gameContainer {
   text-align: center;
