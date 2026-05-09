@@ -128,12 +128,31 @@ function moveSnake() {
 }
 
 function drawSnake() {
-  ctx.fillStyle = snakeColor;
-  ctx.strokeStyle = snakeBorder;
-  snake.forEach((snakePart) => {
+
+  snake.forEach((snakePart, index) => {
+    // Head color
+    if (index === 0) {
+      ctx.fillStyle = "#32cd32";
+    }
+    // Body color
+    else {
+      ctx.fillStyle = snakeColor;
+    }
+    ctx.strokeStyle = snakeBorder;
     ctx.fillRect(snakePart.x, snakePart.y, unitSize, unitSize);
     ctx.strokeRect(snakePart.x, snakePart.y, unitSize, unitSize);
+    // Draw eyes ONLY on head
+    if (index === 0) {
+      drawEyes(snakePart.x, snakePart.y);
+    }
   });
+}
+function drawEyes(x, y) {
+  ctx.fillStyle = "black";
+  // LEFT eye
+  ctx.fillRect(x + 5, y + 5, 4, 4);
+  // RIGHT eye
+  ctx.fillRect(x + 16, y + 5, 4, 4);
 }
 
 function changeDirection(event) {
