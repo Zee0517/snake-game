@@ -2,7 +2,6 @@
 const gameBoard = document.querySelector("#gameBoard");
 const ctx = gameBoard.getContext("2d");
 const scoreText = document.querySelector("#scoreText");
-const resetBtn = document.querySelector("#resetBtn");
 const gameWidth = gameBoard.width;
 const gameHeight = gameBoard.height;
 const boardBackground = "#7a6f52";
@@ -26,12 +25,26 @@ let snake = [
 
 window.addEventListener("keydown", startGame);
 window.addEventListener("keydown", changeDirection);
-resetBtn.addEventListener("click", resetGame);
+window.addEventListener("keydown", handleSpace);
+
 
 clearBoard();
 createFood();
 drawFood();
 drawSnake();
+ctx.font = "35px VT323";
+ctx.fillStyle = "black";
+ctx.textAlign = "center";
+ctx.fillText("Press SPACE to Start", gameWidth / 2, gameHeight / 2);
+
+function handleSpace(event) {
+  if (event.code === "Space" && !running) {
+    gameStart();
+  }
+
+  changeDirection(event);
+}
+
 
 function startGame(event) {
   if (event.code === "Space" && !running) {
@@ -43,9 +56,25 @@ function startGame(event) {
 
 function gameStart() {
   running = true;
-  scoreText.textContent = score;
+
+  score = 0;
+  scoreText.textContent = "Score: " + score;
+
+  xVelocity = unitSize;
+  yVelocity = 0;
+
+  snake = [
+    { x: unitSize * 2, y: 0 },
+    { x: unitSize, y: 0 },
+    { x: 0, y: 0 },
+  ];
+
+  clearBoard();
+
   createFood();
   drawFood();
+  drawSnake();
+
   nextTick();
 }
 
@@ -137,7 +166,7 @@ function changeDirection(event) {
       yVelocity = unitSize;
       break;
   }
-} 
+}
 
 function checkGameOver() {
   switch (true) {
@@ -162,10 +191,21 @@ function checkGameOver() {
 }
 
 function displayGameOver() {
-  ctx.font = "50px VT323";
+
+  ctx.font = "40px VT323";
   ctx.fillStyle = "black";
   ctx.textAlign = "center";
-  ctx.fillText("GAME OVER!", gameWidth / 2, gameHeight / 2);
+
+  ctx.fillText("GAME OVER!", gameWidth / 2, gameHeight / 2 - 20);
+
+  ctx.font = "25px VT323";
+
+  ctx.fillText(
+    "Press SPACE to Restart",
+    gameWidth / 2,
+    gameHeight / 2 + 30
+  );
+
   running = false;
 }
 
