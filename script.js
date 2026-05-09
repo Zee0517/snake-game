@@ -48,6 +48,7 @@ function gameStart() {
   drawFood();
   nextTick();
 }
+
 function nextTick() {
   if (running) {
     gameTimer = setTimeout(() => {
@@ -62,10 +63,12 @@ function nextTick() {
     displayGameOver();
   }
 }
+
 function clearBoard() {
   ctx.fillStyle = boardBackground;
   ctx.fillRect(0, 0, gameWidth, gameHeight);
 }
+
 function createFood() {
   function randomFood(min, max) {
     const randNum =
@@ -75,10 +78,12 @@ function createFood() {
   foodX = randomFood(0, gameWidth - unitSize);
   foodY = randomFood(0, gameHeight - unitSize);
 }
+
 function drawFood() {
   ctx.fillStyle = foodColor;
   ctx.fillRect(foodX, foodY, unitSize, unitSize);
 }
+
 function moveSnake() {
   const head = { x: snake[0].x + xVelocity, y: snake[0].y + yVelocity };
 
@@ -92,6 +97,7 @@ function moveSnake() {
     snake.pop();
   }
 }
+
 function drawSnake() {
   ctx.fillStyle = snakeColor;
   ctx.strokeStyle = snakeBorder;
@@ -100,6 +106,7 @@ function drawSnake() {
     ctx.strokeRect(snakePart.x, snakePart.y, unitSize, unitSize);
   });
 }
+
 function changeDirection(event) {
   const keyPressed = event.keyCode;
   const LEFT = 37;
@@ -130,7 +137,8 @@ function changeDirection(event) {
       yVelocity = unitSize;
       break;
   }
-}
+} 
+
 function checkGameOver() {
   switch (true) {
     case snake[0].x < 0:
@@ -152,6 +160,7 @@ function checkGameOver() {
     }
   }
 }
+
 function displayGameOver() {
   ctx.font = "50px VT323";
   ctx.fillStyle = "black";
@@ -159,9 +168,10 @@ function displayGameOver() {
   ctx.fillText("GAME OVER!", gameWidth / 2, gameHeight / 2);
   running = false;
 }
+
 function resetGame() {
-    clearTimeout(gameTimer);
-    running = 0;
+  clearTimeout(gameTimer);
+  running = 0;
   score = 0;
   xVelocity = unitSize;
   yVelocity = 0;
