@@ -1,4 +1,4 @@
-//Constance 
+//Constance
 const gameBoard = document.querySelector("#gameBoard");
 const ctx = gameBoard.getContext("2d");
 const scoreText = document.querySelector("#scoreText");
@@ -11,6 +11,7 @@ const snakeBorder = "black";
 const foodColor = "red";
 const unitSize = 25;
 //Let
+let gameTimer;
 let running = false;
 let xVelocity = unitSize;
 let yVelocity = 0;
@@ -49,7 +50,7 @@ function gameStart() {
 }
 function nextTick() {
   if (running) {
-    setTimeout(() => {
+    gameTimer = setTimeout(() => {
       clearBoard();
       drawFood();
       moveSnake();
@@ -60,7 +61,6 @@ function nextTick() {
   } else {
     displayGameOver();
   }
-
 }
 function clearBoard() {
   ctx.fillStyle = boardBackground;
@@ -160,6 +160,8 @@ function displayGameOver() {
   running = false;
 }
 function resetGame() {
+    clearTimeout(gameTimer);
+    running = 0;
   score = 0;
   xVelocity = unitSize;
   yVelocity = 0;
