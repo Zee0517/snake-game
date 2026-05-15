@@ -27,7 +27,6 @@ window.addEventListener("keydown", startGame);
 window.addEventListener("keydown", changeDirection);
 window.addEventListener("keydown", handleSpace);
 
-
 clearBoard();
 createFood();
 drawFood();
@@ -44,7 +43,6 @@ function handleSpace(event) {
 
   changeDirection(event);
 }
-
 
 function startGame(event) {
   if (event.code === "Space" && !running) {
@@ -128,7 +126,6 @@ function moveSnake() {
 }
 
 function drawSnake() {
-
   snake.forEach((snakePart, index) => {
     // Head color
     if (index === 0) {
@@ -210,7 +207,6 @@ function checkGameOver() {
 }
 
 function displayGameOver() {
-
   ctx.font = "40px VT323";
   ctx.fillStyle = "black";
   ctx.textAlign = "center";
@@ -219,11 +215,7 @@ function displayGameOver() {
 
   ctx.font = "25px VT323";
 
-  ctx.fillText(
-    "Press SPACE to Restart",
-    gameWidth / 2,
-    gameHeight / 2 + 30
-  );
+  ctx.fillText("Press SPACE to Restart", gameWidth / 2, gameHeight / 2 + 30);
 
   running = false;
 }
