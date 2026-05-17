@@ -23,7 +23,6 @@ let snake = [
   { x: 0, y: 0 },
 ];
 
-window.addEventListener("keydown", startGame);
 window.addEventListener("keydown", changeDirection);
 window.addEventListener("keydown", handleSpace);
 
@@ -42,12 +41,6 @@ function handleSpace(event) {
   }
 
   changeDirection(event);
-}
-
-function startGame(event) {
-  if (event.code === "Space" && !running) {
-    gameStart();
-  }
 }
 
 // gameStart();
@@ -118,7 +111,7 @@ function moveSnake() {
   //if food is eaten
   if (snake[0].x == foodX && snake[0].y == foodY) {
     score += 1;
-    scoreText.textContent = score;
+    scoreText.textContent = "Score: " + score;
     createFood();
   } else {
     snake.pop();
@@ -207,6 +200,7 @@ function checkGameOver() {
 }
 
 function displayGameOver() {
+  clearTimeout(gameTimer);
   ctx.font = "40px VT323";
   ctx.fillStyle = "black";
   ctx.textAlign = "center";
