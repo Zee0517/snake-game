@@ -109,7 +109,7 @@ function nextTick() {
 
       nextTick();
 
-    }, 75);
+    }, 92);
 
   } else {
     displayGameOver();
